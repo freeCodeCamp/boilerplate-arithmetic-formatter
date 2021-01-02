@@ -17,7 +17,7 @@ arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])
 ```
 
 Output:
-```
+```python
    32      3801      45      123
 + 698    -    2    + 43    +  49
 -----    ------    ----    -----
@@ -29,7 +29,7 @@ arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"], True)
 ```
 
 Output:
-```
+```python
   32         1      9999      523
 +  8    - 3801    + 9999    -  49
 ----    ------    ------    -----
@@ -66,4 +66,4 @@ The unit tests for this project are in `test_module.py`. We imported the tests f
 
 ### Submitting
 
-Copy your project's URL and submit it to freeCodeCamp.
+Copy your project's URL and submit it to **freeCodeCamp.**

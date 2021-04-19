@@ -1,0 +1,138 @@
+def arithmetic_arranger(problems,default=False):
+  c=1
+  for i in problems:
+    if(c>5):
+      arranged_problems="Error: Too many problems."
+      return arranged_problems
+    else:
+      c+=1
+  top_num_arr=[]
+  bottom_num_arr=[]
+  operator_arr=[]
+  for i in problems:
+    flag=0
+    j=0
+    top_num=""
+    bottom_num=""
+    operator=""
+    for char in i:
+      if(char!='+' and char!='-'and char!=' ' and flag>=j and char!='*' and char!='/'):
+        top_num=top_num+char
+        flag+=1
+      if(char=='+'or char=='-'):
+        operator+=char
+        j=flag+1
+      if(char!='+' and char!='-' and char!=" " and flag<j and char!='*' and char!='/'):
+        bottom_num+=char
+      if(char=='*' or char=='/'):
+        arranged_problems="Error: Operator must be '+' or '-'."
+        return arranged_problems
+      if(char!='0' and char!='1' and char!='2' and char!='3' and char!='4' and char!='5' and char!='6' and char!='7' and char!='8' and char!='9' and char!='+' and char!='-' and char!='*' and char!='/' and char!=' '):
+        arranged_problems="Error: Numbers must only contain digits."
+        return arranged_problems
+    top_num_arr.append(top_num)
+    bottom_num_arr.append(bottom_num)
+    operator_arr.append(operator)
+  i=0
+  for i in range(0,len(top_num_arr)):
+    if(len(top_num_arr[i])>4 or len(bottom_num_arr[i])>4):
+      arranged_problems="Error: Numbers cannot be more than four digits."
+      return arranged_problems
+  arranged_problems=""
+  for i in range(0,len(top_num_arr)):
+    if(len(top_num_arr[i])>=len(bottom_num_arr[i])):
+      c=0
+      for c in range(0,3):
+        if(c<2):
+          arranged_problems+=" "
+        else:
+          arranged_problems+=top_num_arr[i]
+    else:
+     c=0
+     for c in range(0,len(bottom_num_arr[i])-len(top_num_arr[i])+2):
+       arranged_problems+=" "
+     arranged_problems+=top_num_arr[i]
+    count=0
+    while(count!=4 and i!=len(top_num_arr)-1):
+      arranged_problems+=" "    
+      count+=1
+  arranged_problems+="\n"
+  for i in range(0,len(bottom_num_arr)):
+    if(len(top_num_arr[i])<=len(bottom_num_arr[i])):
+      c=0
+      for c in range(0,3):
+        if(c==0):
+          arranged_problems+=operator_arr[i]
+        if(c==1):
+          arranged_problems+=" "
+        if(c==2):
+          arranged_problems+=bottom_num_arr[i]
+    if(len(top_num_arr[i])>len(bottom_num_arr[i])):
+      c=0
+      for c in range(0,3):
+        if(c==0):
+          arranged_problems+=operator_arr[i]
+        if(c==1):
+          j=0
+          while(j!=len(top_num_arr[i])-len(bottom_num_arr[i])+1):
+            arranged_problems+=" "
+            j+=1
+        if(c==2):
+          arranged_problems+=bottom_num_arr[i]
+    count=0
+    while(count!=4 and i!=len(bottom_num_arr)-1):
+      arranged_problems+=" "
+      count+=1
+  arranged_problems+="\n"
+  for i in range(0,len(bottom_num_arr)):
+    if(len(top_num_arr[i])<=len(bottom_num_arr[i])):
+      for c in range(0,len(bottom_num_arr[i])+2):
+        arranged_problems+="-"
+    else:
+      for c in range(0,len(top_num_arr[i])+2):
+        arranged_problems+="-"
+    count=0
+    while(count!=4 and i!=len(bottom_num_arr)-1):
+      arranged_problems+=" "
+      count+=1
+  if(default==False): 
+    return arranged_problems
+  else:
+    arranged_problems+="\n"
+    i=0
+    for i in range(0,len(bottom_num_arr)):
+      if(operator_arr[i]=="+"):
+        value=int(top_num_arr[i])+int(bottom_num_arr[i])
+      else:
+        value=int(top_num_arr[i])-int(bottom_num_arr[i])
+      if(value<0):
+        power=1
+        while(abs(value)//(10**power)!=0):
+          power+=1
+        if(len(top_num_arr[i])<=len(bottom_num_arr[i])):
+          j=0
+          while(j!=(len(bottom_num_arr[i])+2-power-1)):
+            arranged_problems+=" "
+            j+=1
+          arranged_problems+=str(value)
+      else:
+        power=1
+        while((abs(value))//(10**power)!=0):
+          power+=1
+        if(len(top_num_arr[i])<=len(bottom_num_arr[i])):
+          j=0
+          while(j!=len(bottom_num_arr[i])+2-power):
+            arranged_problems+=" "
+            j+=1
+          arranged_problems+=str(value)
+        else:
+          j=0
+          while(j!=len(top_num_arr[i])+2-power):
+            arranged_problems+=" "
+            j+=1
+          arranged_problems+=str(value)
+      count=0
+      while(count!=4 and i!=len(bottom_num_arr)-1):
+        arranged_problems+=" "
+        count+=1
+    return arranged_problems

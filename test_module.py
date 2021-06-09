@@ -14,7 +14,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(actual, expected, 'Expected different output when calling "arithmetic_arranger()" with ["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"]')
 
     def test_too_many_problems(self):
-        actual = arithmetic_arranger(["44 + 815", "909 - 2", "45 + 43", "123 + 49", "888 + 40", "653 + 87"])
+        actual = arithmetic_arranger(["44 * 815", "909 / 2", "4a5 + 43", "12345 + 49", "888 ^ 40", "653 + 87"])
         expected = "Error: Too many problems."
         self.assertEqual(actual, expected, 'Expected calling "arithmetic_arranger()" with more than five problems to return "Error: Too many problems."')
 

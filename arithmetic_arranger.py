@@ -11,12 +11,18 @@ def arithmetic_arranger(problems):
     print(maList)
     tail = len(maList)
     print(tail)
-
-    for i in [0, 2, 4, 6]:
+    comp = [0, 2, 4, 6]
+    for i in comp:
         print(maList[i], maList[i + 1])
         tab.append(len(max(maList[i], maList[i + 1], key=len)))
 
     print(tab)
+    for c, t in zip(comp, tab):
+        print(f"{maList[c]:>{t + 6}s}", end="")
+    print("\n")
+    comp2 = [1, 3, 5, 7]
+    for c2, t in zip(comp2, tab):
+        print(f"{'+':>{tab[t]}s} {maList[c2]}", end="    ")
 
 
 #     for i in len(maList):
@@ -33,6 +39,5 @@ def arithmetic_arranger(problems):
 
 
 if __name__ == '__main__':
-    # arithmetic_arranger(["32 + 600133338"])
     arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])
     #

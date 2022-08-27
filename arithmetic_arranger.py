@@ -1,17 +1,35 @@
 def arithmetic_arranger(problems):
-    print(problems)
-    maList=[]
+    maList = []
+    tab = []
     for problem in problems:
         args = problem.split()
-        maList.append(args)
-        print(maList)
-        tab = abs(len(args[0]) - len(args[1]))
-        maxLen = len(args[2])
+        for i in range(3):
+            if args[i] not in ["+", "-"]:
+                maList.append(args[i])
 
-        # if len(args[0]) < len(args[2]):
-        #     print(f"{args[0]:>{maxLen + 2}s}\n{args[1]} {args[2]}")
+    # connaitre le plus grand des deux valeurs
+    print(maList)
+    tail = len(maList)
+    print(tail)
 
-    # return arranged_problems
+    for i in [0, 2, 4, 6]:
+        print(maList[i], maList[i + 1])
+        tab.append(len(max(maList[i], maList[i + 1], key=len)))
+
+    print(tab)
+
+
+#     for i in len(maList):
+#         if maList[i]<maList[i+2]:
+#             tab.append(len(maList[i+2]))
+
+# tab = abs(len(args[0]) - len(args[1]))
+# maxLen = len(args[2])
+
+# if len(args[0]) < len(args[2]):
+#     print(f"{args[0]:>{maxLen + 2}s}\n{args[1]} {args[2]}")
+
+# return arranged_problems
 
 
 if __name__ == '__main__':

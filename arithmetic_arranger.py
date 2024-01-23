@@ -4,8 +4,7 @@
 
 
 
-
-def arithmetic_arranger(problems):
+def arithmetic_arranger(problems, show_answers=False):
     arranged_problems = {"top": [], "bottom": [], "line": [], "result": []}
 
     for problem in problems:
@@ -16,10 +15,18 @@ def arithmetic_arranger(problems):
         arranged_problems["bottom"].append(operator + op2.rjust(width - 1))
         arranged_problems["line"].append("-" * width)
 
-    return "\n".join([*arranged_problems["top"], *arranged_problems["bottom"], *arranged_problems["line"]])
+        if show_answers:
+            result = str(eval(problem)).rjust(width)
+            arranged_problems["result"].append(result)
+
+    if show_answers:
+        return "\n".join([*arranged_problems["top"], *arranged_problems["bottom"], *arranged_problems["line"], *arranged_problems["result"]])
+    else:
+        return "\n".join([*arranged_problems["top"], *arranged_problems["bottom"], *arranged_problems["line"]])
 
 
 problems = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
-result = arithmetic_arranger(problems)
-print(result)
+result_with_answers = arithmetic_arranger(problems, show_answers=True)
+print(result_with_answers)
+
 
